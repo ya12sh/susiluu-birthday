@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Surprise 🎁</title><link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Surprise 🎁</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="surprise-page">
-  <header class="nav"><a href="home.html">❤️ Bangaram</a><nav><a href="home.html">Home</a><a href="memories.html">Memories</a><a href="letter.html">Letter</a><a class="active" href="surprise.html">Surprise</a></nav></header>
+  <header class="nav">
+    <a href="home.html">❤️ Bangaram</a>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="memories.html">Memories</a>
+      <a href="letter.html">Letter</a>
+      <a class="active" href="surprise.html">Surprise</a>
+    </nav>
+  </header>
+
   <main class="page surprise-content">
-    <p class="eyebrow">One last thing...</p><h1>Your Birthday Surprise 🎁</h1>
+    <p class="eyebrow">One last thing...</p>
+    <h1>Your Birthday Surprise 🎁</h1>
+    
     <button id="gift" class="gift" aria-label="Open gift">🎁</button>
     <p id="giftHint">Click the gift box</p>
+
     <div id="surpriseMessage" class="surprise-message hidden">
       <div class="confetti">🎉 ✨ 🎂 💕 ✨ 🎉</div>
       <h2>I Love You Nana ❤️</h2>
       <p>My day is always better when I’m with you. Will you stay by my side forever?</p>
       <h3>Happy Birthday Nannaluuu 🎂🥳</h3>
+
+      <!-- Proposal Buttons Section -->
+      <div id="buttonArea" class="button-row center" style="margin-top: 25px; position: relative;">
+        <button id="yesBtn" class="btn" onclick="sayYes()">Yes! ❤️</button>
+        <button id="noBtn" class="btn ghost" onmouseover="moveNoButton()" onclick="moveNoButton()">No 😜</button>
+      </div>
+
+      <!-- Secret Acceptance Message -->
+      <div id="yesResponse" class="hidden" style="margin-top: 20px;">
+        <h2 style="color: #ff9fca; font-size: 2rem;">I knew you'd say YES! 🥰💖</h2>
+        <p>You made me the happiest person in the world! Love you forever Bangaram! 💍✨</p>
+      </div>
     </div>
   </main>
+
   <footer>Forever cheering for your happiness — Yash ❤️</footer>
+
   <script src="script.js"></script>
+  <script>
+    // Gift Box Click Functionality
+    const giftBtn = document.getElementById('gift');
+    const giftHint = document.getElementById('giftHint');
+    const surpriseMessage = document.getElementById('surpriseMessage');
+
+    giftBtn.addEventListener('click', () => {
+      giftBtn.classList.add('hidden');
+      giftHint.classList.add('hidden');
+      surpriseMessage.classList.remove('hidden');
+    });
+
+    // Runaway No Button Functionality
+    function moveNoButton() {
+      const noBtn = document.getElementById('noBtn');
+      const maxX = window.innerWidth - noBtn.offsetWidth - 100;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 100;
+
+      const randomX = Math.floor(Math.random() * Math.max(0, maxX));
+      const randomY = Math.floor(Math.random() * Math.max(0, maxY));
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    }
+
+    // Yes Button Click Functionality
+    function sayYes() {
+      document.getElementById('buttonArea').style.display = 'none';
+      document.getElementById('yesResponse').classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
